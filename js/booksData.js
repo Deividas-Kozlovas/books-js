@@ -5,7 +5,7 @@ export const books = [
       {
         title: "Clean Code",
         author: "Robert C. Martin",
-        year: 2008,
+        year: 2024,
         ISBN: "978-0136083238",
         pages: 464,
         quantity: 10,
@@ -241,7 +241,7 @@ export const books = [
       {
         title: "The Silent Patient",
         author: "Alex Michaelides",
-        year: 2019,
+        year: 2024,
         ISBN: "978-1250301697",
         pages: 336,
         quantity: 7,
