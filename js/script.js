@@ -4,43 +4,67 @@ import { books } from "./booksData.js";
   printBooks(books);
 
   function printBooks(books) {
-    for (const book of books) {
-      console.log(`Categoreis:${book.category}`);
-      let categoryAllBooksValues = 0;
-      for (const individualBook in book.books) {
-        console.log(`Title: ${book.books[individualBook].title}`);
-        console.log(`Author: ${book.books[individualBook].author}`);
-        isBookNew(book.books[individualBook].year);
-        console.log(`ISBM: ${book.books[individualBook].ISBN}`);
-        console.log(`Pages: ${book.books[individualBook].pages}`);
-        console.log(`Quantity: ${book.books[individualBook].quantity}`);
-        console.log(`Price: ${book.books[individualBook].price}`);
+    let totalInventoryValue = 0;
 
+    for (const book of books) {
+      console.log(`Categories: ${book.category}`);
+      let categoryAllBooksValues = 0;
+
+      for (const individualBook of book.books) {
+        const isNew = isBookNew(individualBook.year);
         const booksTotalValue = totalValue(
-          book.books[individualBook].quantity,
-          book.books[individualBook].price
+          individualBook.quantity,
+          individualBook.price
         );
 
-        console.log(`Total value of all books: ${booksTotalValue} \n \n`);
+        console.log(
+          "Title: " +
+            individualBook.title +
+            "\n" +
+            "Author: " +
+            individualBook.author +
+            "\n" +
+            "ISBN: " +
+            individualBook.ISBN +
+            "\n" +
+            "Pages: " +
+            individualBook.pages +
+            "\n" +
+            "Year: " +
+            isNew +
+            "\n" +
+            "Quantity: " +
+            individualBook.quantity +
+            "\n" +
+            "Price: " +
+            individualBook.price +
+            "$\n" +
+            "Total value of this book: " +
+            booksTotalValue +
+            "$"
+        );
 
-        categoryAllBooksValues =
-          categoryAllBooksValues + parseInt(booksTotalValue);
+        categoryAllBooksValues += parseFloat(booksTotalValue);
       }
 
+      totalInventoryValue += categoryAllBooksValues;
+
       console.log(
-        `Total value of all books in the category: ${categoryAllBooksValues}`
+        "Total value of all books in the category: " +
+          categoryAllBooksValues +
+          "$\n" +
+          "Total value of all inventory of " +
+          book.category +
+          ": " +
+          totalInventoryValue +
+          "$ \n \n \n \n"
       );
-      console.log("-----------------------------------------  \n \n");
     }
   }
 
   function isBookNew(bookYear) {
     const currentYear = new Date().getFullYear();
-    if (bookYear == currentYear) {
-      console.log("Year: NEW");
-    } else {
-      console.log(`Year: ${bookYear}`);
-    }
+    return bookYear === currentYear ? "NEW" : bookYear;
   }
 
   function totalValue(quantity, price) {
