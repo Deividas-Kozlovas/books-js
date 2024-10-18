@@ -14,6 +14,10 @@ import { books } from "./booksData.js";
         console.log(`Pages: ${book.books[individualBook].pages}`);
         console.log(`Quantity: ${book.books[individualBook].quantity}`);
         console.log(`Price: ${book.books[individualBook].price} \n \n`);
+        totalValue(
+          book.books[individualBook].quantity,
+          book.books[individualBook].price
+        );
       }
       console.log("-----------------------------------------  \n \n");
     }
@@ -26,5 +30,9 @@ import { books } from "./booksData.js";
     } else {
       console.log(`Year: ${bookYear}`);
     }
+  }
+
+  function totalValue(quantity, price) {
+    console.log(`Total value: ${(price * quantity).toFixed(2)}`);
   }
 })();
