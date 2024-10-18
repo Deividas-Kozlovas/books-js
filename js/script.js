@@ -6,6 +6,7 @@ import { books } from "./booksData.js";
   function printBooks(books) {
     for (const book of books) {
       console.log(`Categoreis:${book.category}`);
+      let categoryAllBooksValues = 0;
       for (const individualBook in book.books) {
         console.log(`Title: ${book.books[individualBook].title}`);
         console.log(`Author: ${book.books[individualBook].author}`);
@@ -13,12 +14,22 @@ import { books } from "./booksData.js";
         console.log(`ISBM: ${book.books[individualBook].ISBN}`);
         console.log(`Pages: ${book.books[individualBook].pages}`);
         console.log(`Quantity: ${book.books[individualBook].quantity}`);
-        console.log(`Price: ${book.books[individualBook].price} \n \n`);
-        totalValue(
+        console.log(`Price: ${book.books[individualBook].price}`);
+
+        const booksTotalValue = totalValue(
           book.books[individualBook].quantity,
           book.books[individualBook].price
         );
+
+        console.log(`Total value of all books: ${booksTotalValue} \n \n`);
+
+        categoryAllBooksValues =
+          categoryAllBooksValues + parseInt(booksTotalValue);
       }
+
+      console.log(
+        `Total value of all books in the category: ${categoryAllBooksValues}`
+      );
       console.log("-----------------------------------------  \n \n");
     }
   }
@@ -33,6 +44,6 @@ import { books } from "./booksData.js";
   }
 
   function totalValue(quantity, price) {
-    console.log(`Total value: ${(price * quantity).toFixed(2)}`);
+    return (price * quantity).toFixed(2);
   }
 })();
