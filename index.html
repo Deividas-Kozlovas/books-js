@@ -4,11 +4,84 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/bootstrap.css" />
-    <title>Document</title>
+    <title>Book List</title>
   </head>
   <body>
-    <p>hello world</p>
+    <div class="container">
+      <h1 class="mt-4">Book List</h1>
+      <div class="filter-section mt-3">
+        <form id="filterForm">
+          <div class="row">
+            <div class="col">
+              <label for="bookTitle" class="form-label">Book Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="bookTitle"
+                placeholder="Enter title"
+              />
+            </div>
+            <div class="col">
+              <label for="bookCategory" class="form-label">Book Category</label>
+              <select id="bookCategory" class="form-select">
+                <option value="">All Categories</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="bookPages" class="form-label">Maximum Pages</label>
+              <input
+                type="number"
+                class="form-control"
+                id="bookPages"
+                placeholder="Enter max pages"
+              />
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-primary mt-4"
+                onclick="filterItems()"
+              >
+                Apply Filters
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col d-flex align-items-center gap-2">
+          <button type="button" class="btn btn-primary">
+            Most Expensive Book
+          </button>
+          <button type="button" class="btn btn-primary">Cheapest Book</button>
+          <button type="button" class="btn btn-primary">
+            Count Inventory Price
+          </button>
+        </div>
+        <div class="col">
+          <label for="sortOptions" class="form-label">Sort by:</label>
+          <select
+            id="sortOptions"
+            class="form-select w-auto d-inline"
+            onchange="sortItems(this.value)"
+          >
+            <option value="title_asc">Title ASC</option>
+            <option value="title_dsc">Title DSC</option>
+            <option value="price_asc">Price ASC</option>
+            <option value="price_dsc">Price DSC</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <ul class="list-group">
+            <li class="list-group-item">An item</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js" type="module"></script>
   </body>
 </html>
