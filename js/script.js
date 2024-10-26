@@ -1,65 +1,39 @@
 import { books } from "./booksData.js";
 
 (() => {
-  printBooks(books);
+  displayBooks(books);
 
-  function printBooks(books) {
-    let totalInventoryValue = 0;
+  function displayBooks(books) {
+    const booksCategories = document.querySelector("#books");
 
-    for (const book of books) {
-      console.log(`Categories: ${book.category}`);
-      let categoryAllBooksValues = 0;
+    books.forEach((book) => {
+      const booksCategorieCard = document.createElement("div");
+      booksCategorieCard.className = "col-md-4 book-card";
 
-      for (const individualBook of book.books) {
-        const isNew = isBookNew(individualBook.year);
-        const booksTotalValue = totalValue(
-          individualBook.quantity,
-          individualBook.price
-        );
+      const categoryTitle = document.createElement("h1");
+      categoryTitle.textContent = book.category;
+      booksCategorieCard.appendChild(categoryTitle);
 
-        console.log(
-          "Title: " +
-            individualBook.title +
-            "\n" +
-            "Author: " +
-            individualBook.author +
-            "\n" +
-            "ISBN: " +
-            individualBook.ISBN +
-            "\n" +
-            "Pages: " +
-            individualBook.pages +
-            "\n" +
-            "Year: " +
-            isNew +
-            "\n" +
-            "Quantity: " +
-            individualBook.quantity +
-            "\n" +
-            "Price: " +
-            individualBook.price +
-            "$\n" +
-            "Total value of this book: " +
-            booksTotalValue +
-            "$"
-        );
+      const booksList = document.createElement("ul");
+      booksList.className = "list-group";
 
-        categoryAllBooksValues += parseFloat(booksTotalValue);
-      }
+      book.books.forEach((individualBook) => {
+        const bookItem = document.createElement("li");
+        bookItem.className = "list-group-item";
+        bookItem.innerHTML = `
+        <strong>Pavadinimas:</strong> ${individualBook.title} <br>
+        <strong>ISBN:</strong> ${individualBook.ISBN} <br>
+        <strong>Leidybos metai:</strong> ${individualBook.year} <br>
+        <strong>Puslapių skaičius:</strong> ${individualBook.pages} <br>
+        <strong>Kiekis:</strong> ${individualBook.quantity} <br>
+        <strong>Kaina:</strong> ${individualBook.price}
+        `;
+        booksList.appendChild(bookItem);
+      });
 
-      totalInventoryValue += categoryAllBooksValues;
-
-      console.log(
-        "Total value of all books in the category: " +
-          categoryAllBooksValues +
-          "$\n" +
-          "Total value of all inventory of " +
-          book.category +
-          ": " +
-          totalInventoryValue +
-          "$ \n \n \n \n"
-      );
-    }
+      booksCategorieCard.appendChild(booksList);
+      booksCategories.appendChild(booksCategorieCard);
+    });
   }
 
   function isBookNew(bookYear) {
