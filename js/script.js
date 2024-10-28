@@ -19,6 +19,18 @@ import { books } from "./booksData.js";
     const formData = { bookTitle, bookCategory, bookPages };
   });
 
+  addCategoreisToFormOptions(books);
+
+  function addCategoreisToFormOptions(books) {
+    const bookCategorySelect = filterForm.querySelector("#bookCategory");
+    books.forEach((book) => {
+      const option = document.createElement("option");
+      option.value = book.category;
+      option.textContent = book.category;
+      bookCategorySelect.appendChild(option);
+    });
+  }
+
   function displayBooks(books) {
     const booksCategories = document.querySelector("#books");
 
