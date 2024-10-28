@@ -8,16 +8,31 @@ import { books } from "./booksData.js";
   filterForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const bookTitle = filterForm.querySelector("#bookTitle").value;
-    const bookCategory = filterForm.querySelector("#bookCategory").value;
-    const bookPages = filterForm.querySelector("#bookPages").value;
+    const formData = new FormData(filterForm);
+    const bookTitle = formData.get("bookTitle").toLowerCase();
+    const bookCategory = formData.get("bookCategory");
+    const maxPages = parseInt(formData.get("bookPages"), 10);
 
-    console.log("Book Title:", bookTitle);
-    console.log("Book Category:", bookCategory);
-    console.log("Maximum Pages:", bookPages);
+    const filteredBooks = filterBooks(books, bookTitle, bookCategory, maxPages);
 
-    const formData = { bookTitle, bookCategory, bookPages };
+    displayBooks(filteredBooks);
   });
+
+  function filterBooks(books, title, category, maxPages) {
+    return books
+      .filter((cat) => !category || cat.category === category)
+      .map((cat) => {
+        const filteredBooks = cat.books.filter(
+          (book) =>
+            (!title || book.title.toLowerCase().includes(title)) &&
+            (!maxPages || book.pages <= maxPages)
+        );
+        return filteredBooks.length > 0
+          ? { category: cat.category, books: filteredBooks }
+          : null;
+      })
+      .filter(Boolean);
+  }
 
   addCategoreisToFormOptions(books);
 
@@ -33,7 +48,7 @@ import { books } from "./booksData.js";
 
   function displayBooks(books) {
     const booksCategories = document.querySelector("#books");
-
+    booksCategories.innerHTML = "";
     books.forEach((book) => {
       const booksCategorieCard = document.createElement("div");
       booksCategorieCard.className = "col-md-4 book-card";
