@@ -3,6 +3,22 @@ import { books } from "./booksData.js";
 (() => {
   displayBooks(books);
 
+  const filterForm = document.getElementById("filterForm");
+
+  filterForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const bookTitle = filterForm.querySelector("#bookTitle").value;
+    const bookCategory = filterForm.querySelector("#bookCategory").value;
+    const bookPages = filterForm.querySelector("#bookPages").value;
+
+    console.log("Book Title:", bookTitle);
+    console.log("Book Category:", bookCategory);
+    console.log("Maximum Pages:", bookPages);
+
+    const formData = { bookTitle, bookCategory, bookPages };
+  });
+
   function displayBooks(books) {
     const booksCategories = document.querySelector("#books");
 
