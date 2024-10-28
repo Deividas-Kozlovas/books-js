@@ -3,12 +3,18 @@ import { books } from "./booksData.js";
 (() => {
   displayBooks(books);
 
-  const filterForm = document.getElementById("filterForm");
-  const sortSelect = document.getElementById("sortOptions");
+  const filterForm = document.querySelector("#filterForm");
+  const sortSelect = document.querySelector("#sortOptions");
 
   filterForm.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const filteredBooks = getFilteredBooks();
+
+    if (filteredBooks.length === books.length) {
+      sortOptions.value = "default";
+    }
+
     displayBooks(filteredBooks);
   });
 
@@ -102,7 +108,7 @@ import { books } from "./booksData.js";
             <strong>Year:</strong> ${isBookNew(individualBook.year)} <br>
         <strong>Pages:</strong> ${individualBook.pages} <br>
         <strong>Quantity:</strong> ${individualBook.quantity} <br>
-        <strong>Price:</strong> ${individualBook.price}
+        <strong>Price:</strong> $${individualBook.price}
         `;
         booksList.appendChild(bookItem);
       });
