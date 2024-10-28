@@ -4,19 +4,26 @@ import { books } from "./booksData.js";
   displayBooks(books);
 
   const filterForm = document.getElementById("filterForm");
+  const sortSelect = document.getElementById("sortOptions");
 
   filterForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    const filteredBooks = getFilteredBooks();
+    displayBooks(filteredBooks);
+  });
 
+  sortSelect.addEventListener("change", (e) => {
+    const filteredBooks = getFilteredBooks();
+    sortAndDisplayBooks(filteredBooks, e.target.value);
+  });
+
+  function getFilteredBooks() {
     const formData = new FormData(filterForm);
     const bookTitle = formData.get("bookTitle").toLowerCase();
     const bookCategory = formData.get("bookCategory");
     const maxPages = parseInt(formData.get("bookPages"), 10);
-
-    const filteredBooks = filterBooks(books, bookTitle, bookCategory, maxPages);
-
-    displayBooks(filteredBooks);
-  });
+    return filterBooks(books, bookTitle, bookCategory, maxPages);
+  }
 
   function filterBooks(books, title, category, maxPages) {
     return books
@@ -32,6 +39,32 @@ import { books } from "./booksData.js";
           : null;
       })
       .filter(Boolean);
+  }
+
+  function sortAndDisplayBooks(filteredBooks, sortOption) {
+    if (sortOption === "title_asc") {
+      filteredBooks = filteredBooks.map((cat) => ({
+        ...cat,
+        books: cat.books.sort((a, b) => a.title.localeCompare(b.title)),
+      }));
+    } else if (sortOption === "title_dsc") {
+      filteredBooks = filteredBooks.map((cat) => ({
+        ...cat,
+        books: cat.books.sort((a, b) => b.title.localeCompare(a.title)),
+      }));
+    } else if (sortOption === "price_asc") {
+      filteredBooks = filteredBooks.map((cat) => ({
+        ...cat,
+        books: cat.books.sort((a, b) => a.price - b.price),
+      }));
+    } else if (sortOption === "price_dsc") {
+      filteredBooks = filteredBooks.map((cat) => ({
+        ...cat,
+        books: cat.books.sort((a, b) => b.price - a.price),
+      }));
+    }
+
+    displayBooks(filteredBooks);
   }
 
   addCategoreisToFormOptions(books);
@@ -64,12 +97,12 @@ import { books } from "./booksData.js";
         const bookItem = document.createElement("li");
         bookItem.className = "list-group-item";
         bookItem.innerHTML = `
-        <strong>Pavadinimas:</strong> ${individualBook.title} <br>
+        <strong>Title:</strong> ${individualBook.title} <br>
         <strong>ISBN:</strong> ${individualBook.ISBN} <br>
-        <strong>Leidybos metai:</strong> ${individualBook.year} <br>
-        <strong>Puslapių skaičius:</strong> ${individualBook.pages} <br>
-        <strong>Kiekis:</strong> ${individualBook.quantity} <br>
-        <strong>Kaina:</strong> ${individualBook.price}
+            <strong>Year:</strong> ${isBookNew(individualBook.year)} <br>
+        <strong>Pages:</strong> ${individualBook.pages} <br>
+        <strong>Quantity:</strong> ${individualBook.quantity} <br>
+        <strong>Price:</strong> ${individualBook.price}
         `;
         booksList.appendChild(bookItem);
       });
