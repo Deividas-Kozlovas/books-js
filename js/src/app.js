@@ -25,6 +25,9 @@ import { books } from "./data/booksData.js";
     e.preventDefault();
     const filteredBooks = getFilteredBooks();
     displayBooks(filteredBooks);
+
+    const curentSortSelered = document.querySelector("#sortOptions").value;
+    sortAndDisplayBooks(filteredBooks, curentSortSelered);
   });
 
   sortSelect.addEventListener("change", (e) => {
