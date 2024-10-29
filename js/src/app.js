@@ -15,6 +15,7 @@ import { books } from "./data/booksData.js";
   const sortSelect = document.querySelector("#sortOptions");
   const mostExpensiveBook = document.querySelector("#mostExpensiveBook");
   const cheapestBook = document.querySelector("#cheapestBook");
+
   const calculateInventoryValaue = document.querySelector(
     "#calculateInventoryValaue"
   );

@@ -8,7 +8,7 @@ export function displayBooks(books) {
     const booksCategorieCard = document.createElement("div");
     booksCategorieCard.className = "col-md-4 book-card";
 
-    const categoryTitle = document.createElement("h1");
+    const categoryTitle = document.createElement("h2");
     categoryTitle.textContent = book.category;
     booksCategorieCard.appendChild(categoryTitle);
 

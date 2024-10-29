@@ -4,43 +4,64 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Include your compiled SCSS file -->
     <title>Book List</title>
   </head>
   <body>
-    <section class="container main">
-      <h1 class="mt-4">Book List</h1>
+    <section class="container">
+      <h1 class="container__title mt-4">Book List</h1>
       <div class="filter-section mt-3">
         <form id="filterForm">
           <div class="row">
             <div class="col">
-              <label for="bookTitle" class="form-label">Book Title</label>
+              <label for="bookTitle" class="filter-section__label"
+                >Book Title</label
+              >
               <input
                 type="text"
-                class="form-control"
+                class="filter-section__input form-control"
                 id="bookTitle"
                 name="bookTitle"
                 placeholder="Enter title"
               />
             </div>
             <div class="col">
-              <label for="bookCategory" class="form-label">Book Category</label>
-              <select id="bookCategory" class="form-select" name="bookCategory">
+              <label for="bookCategory" class="filter-section__label"
+                >Book Category</label
+              >
+              <select
+                id="bookCategory"
+                class="filter-section__select form-select"
+                name="bookCategory"
+              >
                 <option value="">All Categories</option>
               </select>
             </div>
             <div class="col">
-              <label for="bookPages" class="form-label">Maximum Pages</label>
+              <label for="bookPages" class="filter-section__label"
+                >Maximum Pages</label
+              >
               <input
                 type="number"
-                class="form-control"
+                class="filter-section__input form-control"
                 id="bookPages"
                 placeholder="Enter max pages"
                 name="bookPages"
               />
             </div>
             <div class="col">
-              <button type="submit" class="btn btn-primary mt-4">
-                Apply Filters
+              <button
+                type="submit"
+                class="filter-section__button btn btn-primary mt-4"
+              >
+                Apply Filters</button
+              ><button
+                type="button"
+                id="clearFilter"
+                class="filter-section__button btn btn-secondary mt-4 ms-3"
+              >
+                Clear Filters
               </button>
             </div>
           </div>
@@ -63,19 +84,21 @@
             Count Inventory Value
           </button>
         </div>
-        <div class="col">
-          <label for="sortOptions" class="form-label">Sort by:</label>
-          <select id="sortOptions" class="form-select w-auto d-inline">
-            <option value="default">-</option>
-            <option value="title_asc">Title ASC</option>
-            <option value="title_dsc">Title DSC</option>
-            <option value="price_asc">Price ASC</option>
-            <option value="price_dsc">Price DSC</option>
-          </select>
-        </div>
       </div>
-      <div id="inventoryResult"></div>
-      <div class="row" id="books"></div>
+      <div class="inventory-result" id="inventoryResult"></div>
+      <div class="sort-selection">
+        <select
+          id="sortOptions"
+          class="sort-selection__select form-select w-auto d-inline"
+        >
+          <option value="default">Sort by:</option>
+          <option value="title_asc">Title ASC</option>
+          <option value="title_dsc">Title DSC</option>
+          <option value="price_asc">Price ASC</option>
+          <option value="price_dsc">Price DSC</option>
+        </select>
+      </div>
+      <div class="row books" id="books"></div>
     </section>
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/src/app.js" type="module"></script>

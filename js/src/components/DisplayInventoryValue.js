@@ -32,6 +32,7 @@ export function displayInventoryValue(categoryValues, totalInventoryValue) {
   table.appendChild(totalRow);
 
   const resultContainer = document.getElementById("inventoryResult");
+  resultContainer.style.display = "block";
   resultContainer.innerHTML = "";
   resultContainer.appendChild(table);
 }
