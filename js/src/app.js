@@ -5,6 +5,7 @@ import { sortAndDisplayBooks } from "./helpers/sortBooks.js";
 import { findMostExpensiveBook } from "./utils/mostExpensiveBook.js";
 import { findCheapestBook } from "./utils/cheapestBook.js";
 import { calculateInventoryValue } from "./utils/countInventoryValue.js";
+import { clearFilters } from "./utils/cliearFilter.js";
 import { books } from "./data/booksData.js";
 
 (() => {
@@ -15,10 +16,10 @@ import { books } from "./data/booksData.js";
   const sortSelect = document.querySelector("#sortOptions");
   const mostExpensiveBook = document.querySelector("#mostExpensiveBook");
   const cheapestBook = document.querySelector("#cheapestBook");
-
   const calculateInventoryValaue = document.querySelector(
     "#calculateInventoryValaue"
   );
+  const clearFilter = document.querySelector("#clearFilter");
 
   filterForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -46,4 +47,6 @@ import { books } from "./data/booksData.js";
   calculateInventoryValaue.addEventListener("click", () => {
     calculateInventoryValue(books);
   });
+
+  clearFilter.addEventListener("click", clearFilters);
 })();
