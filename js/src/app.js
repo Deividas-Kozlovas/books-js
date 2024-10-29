@@ -21,35 +21,44 @@ import { books } from "./data/booksData.js";
   );
   const clearFilter = document.querySelector("#clearFilter");
 
-  filterForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const filteredBooks = getFilteredBooks();
-    displayBooks(filteredBooks);
+  if (filterForm) {
+    filterForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const filteredBooks = getFilteredBooks();
+      displayBooks(filteredBooks);
+    });
+  }
 
-    const curentSortSelered = document.querySelector("#sortOptions").value;
-    sortAndDisplayBooks(filteredBooks, curentSortSelered);
-  });
+  if (sortSelect) {
+    sortSelect.addEventListener("change", (e) => {
+      const filteredBooks = getFilteredBooks();
+      sortAndDisplayBooks(filteredBooks, e.target.value);
+    });
+  }
 
-  sortSelect.addEventListener("change", (e) => {
-    const filteredBooks = getFilteredBooks();
-    sortAndDisplayBooks(filteredBooks, e.target.value);
-  });
+  if (mostExpensiveBook) {
+    mostExpensiveBook.addEventListener("click", () => {
+      const filterBooks = getFilteredBooks();
+      const expensiveBook = findMostExpensiveBook(filterBooks);
+      displayBooks(expensiveBook);
+    });
+  }
 
-  mostExpensiveBook.addEventListener("click", () => {
-    const filterBooks = getFilteredBooks();
-    const expensiveBook = findMostExpensiveBook(filterBooks);
-    displayBooks(expensiveBook);
-  });
+  if (cheapestBook) {
+    cheapestBook.addEventListener("click", () => {
+      const filterBooks = getFilteredBooks();
+      const cheapBook = findCheapestBook(filterBooks);
+      displayBooks(cheapBook);
+    });
+  }
 
-  cheapestBook.addEventListener("click", () => {
-    const filterBooks = getFilteredBooks();
-    const cheapBook = findCheapestBook(filterBooks);
-    displayBooks(cheapBook);
-  });
+  if (calculateInventoryValaue) {
+    calculateInventoryValaue.addEventListener("click", () => {
+      calculateInventoryValue(books);
+    });
+  }
 
-  calculateInventoryValaue.addEventListener("click", () => {
-    calculateInventoryValue(books);
-  });
-
-  clearFilter.addEventListener("click", clearFilters);
+  if (clearFilter) {
+    clearFilter.addEventListener("click", clearFilters);
+  }
 })();
