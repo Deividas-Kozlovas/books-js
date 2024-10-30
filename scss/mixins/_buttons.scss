@@ -4,15 +4,67 @@
 // and disabled options for all buttons
 
 // scss-docs-start btn-variant-mixin
+@mixin primary-button(
+  $bg-color: $primary-color,
+  $text-color: white,
+  $hover-bg-color: darken($bg-color, 10%),
+  $active-bg-color: darken($bg-color, 15%),
+  $focus-outline: none
+) {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: $bg-color;
+  color: $text-color;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    background-color: $hover-bg-color;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    background-color: $active-bg-color;
+  }
+
+  &:focus {
+    outline: $focus-outline;
+    box-shadow: 0 0 5px rgba($bg-color, 0.5);
+  }
+}
+
 @mixin button-variant(
   $background,
   $border,
   $color: color-contrast($background),
-  $hover-background: if($color == $color-contrast-light, shade-color($background, $btn-hover-bg-shade-amount), tint-color($background, $btn-hover-bg-tint-amount)),
-  $hover-border: if($color == $color-contrast-light, shade-color($border, $btn-hover-border-shade-amount), tint-color($border, $btn-hover-border-tint-amount)),
+  $hover-background:
+    if(
+      $color == $color-contrast-light,
+      shade-color($background, $btn-hover-bg-shade-amount),
+      tint-color($background, $btn-hover-bg-tint-amount)
+    ),
+  $hover-border:
+    if(
+      $color == $color-contrast-light,
+      shade-color($border, $btn-hover-border-shade-amount),
+      tint-color($border, $btn-hover-border-tint-amount)
+    ),
   $hover-color: color-contrast($hover-background),
-  $active-background: if($color == $color-contrast-light, shade-color($background, $btn-active-bg-shade-amount), tint-color($background, $btn-active-bg-tint-amount)),
-  $active-border: if($color == $color-contrast-light, shade-color($border, $btn-active-border-shade-amount), tint-color($border, $btn-active-border-tint-amount)),
+  $active-background:
+    if(
+      $color == $color-contrast-light,
+      shade-color($background, $btn-active-bg-shade-amount),
+      tint-color($background, $btn-active-bg-tint-amount)
+    ),
+  $active-border:
+    if(
+      $color == $color-contrast-light,
+      shade-color($border, $btn-active-border-shade-amount),
+      tint-color($border, $btn-active-border-tint-amount)
+    ),
   $active-color: color-contrast($active-background),
   $disabled-background: $background,
   $disabled-border: $border,

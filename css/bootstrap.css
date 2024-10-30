@@ -35,10 +35,23 @@ body {
       border-color: #007bff;
       box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); }
   .filter-section__button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.2s ease; }
     .filter-section__button:hover {
       background-color: #0062cc;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+    .filter-section__button:active {
+      background-color: #0056b3; }
+    .filter-section__button:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); }
   .filter-section__error {
     color: red; }
 
@@ -74,6 +87,24 @@ body {
   margin: 20px 0; }
   .sort-selection__label {
     margin-right: 10px; }
+  .sort-selection__button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease; }
+    .sort-selection__button:hover {
+      background-color: #0062cc;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+    .sort-selection__button:active {
+      background-color: #0056b3; }
+    .sort-selection__button:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); }
 
 .books {
   margin-top: 20px; }
@@ -92,10 +123,31 @@ body {
     .books__item__description {
       margin: 5px 0;
       color: #6c757d; }
+    .books__item__button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.2s ease; }
+      .books__item__button:hover {
+        background-color: #0062cc;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+      .books__item__button:active {
+        background-color: #0056b3; }
+      .books__item__button:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); }
 
 @media (max-width: 1000px) {
   .filter-section form div {
-    flex-direction: column; } }
+    flex-direction: column; }
+  .filter-section__button {
+    padding: 8px 16px;
+    font-size: 14px; } }
 :root,
 [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
