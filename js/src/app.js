@@ -20,6 +20,7 @@ import { books } from "./data/booksData.js";
     "#calculateInventoryValaue"
   );
   const clearFilter = document.querySelector("#clearFilter");
+  const closeInventory = document.querySelector("#closeInventory");
 
   if (filterForm) {
     filterForm.addEventListener("submit", (e) => {
@@ -59,6 +60,9 @@ import { books } from "./data/booksData.js";
   }
 
   if (clearFilter) {
-    clearFilter.addEventListener("click", clearFilters);
+    clearFilter.addEventListener("click", () => {
+      clearFilters();
+      displayBooks(books);
+    });
   }
 })();

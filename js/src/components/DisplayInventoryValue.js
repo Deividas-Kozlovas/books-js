@@ -31,8 +31,20 @@ export function displayInventoryValue(categoryValues, totalInventoryValue) {
   totalRow.appendChild(totalValueCell);
   table.appendChild(totalRow);
 
-  const resultContainer = document.getElementById("inventoryResult");
+  const closeButton = document.createElement("span");
+  closeButton.id = "closeInventory";
+  closeButton.className = "inventory-result__close";
+  closeButton.textContent = "\u2715";
+
+  closeButton.addEventListener("click", () => {
+    const resultContainer = document.getElementById("inventoryResult");
+    resultContainer.style.display = "none"; // Hide the inventory display
+  });
+
+  const resultContainer = document.querySelector("#inventoryResult");
+  resultContainer.style.position = "relative";
   resultContainer.style.display = "block";
   resultContainer.innerHTML = "";
+  resultContainer.appendChild(closeButton);
   resultContainer.appendChild(table);
 }
