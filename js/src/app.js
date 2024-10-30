@@ -7,6 +7,8 @@ import { findCheapestBook } from "./utils/cheapestBook.js";
 import { calculateInventoryValue } from "./utils/countInventoryValue.js";
 import { clearFilters } from "./utils/cliearFilter.js";
 import { books } from "./data/booksData.js";
+import { validateFilterInputs } from "./utils/validation.js";
+import { clearValidationErrors } from "./components/ClearValidationError.js";
 
 (() => {
   displayBooks(books);
@@ -20,13 +22,14 @@ import { books } from "./data/booksData.js";
     "#calculateInventoryValaue"
   );
   const clearFilter = document.querySelector("#clearFilter");
-  const closeInventory = document.querySelector("#closeInventory");
 
   if (filterForm) {
     filterForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const filteredBooks = getFilteredBooks();
-      displayBooks(filteredBooks);
+      if (validateFilterInputs()) {
+        const filteredBooks = getFilteredBooks();
+        displayBooks(filteredBooks);
+      }
     });
   }
 
@@ -34,6 +37,7 @@ import { books } from "./data/booksData.js";
     sortSelect.addEventListener("change", (e) => {
       const filteredBooks = getFilteredBooks();
       sortAndDisplayBooks(filteredBooks, e.target.value);
+      clearValidationErrors();
     });
   }
 
@@ -42,6 +46,7 @@ import { books } from "./data/booksData.js";
       const filterBooks = getFilteredBooks();
       const expensiveBook = findMostExpensiveBook(filterBooks);
       displayBooks(expensiveBook);
+      clearValidationErrors();
     });
   }
 
@@ -50,12 +55,14 @@ import { books } from "./data/booksData.js";
       const filterBooks = getFilteredBooks();
       const cheapBook = findCheapestBook(filterBooks);
       displayBooks(cheapBook);
+      clearValidationErrors();
     });
   }
 
   if (calculateInventoryValaue) {
     calculateInventoryValaue.addEventListener("click", () => {
       calculateInventoryValue(books);
+      clearValidationErrors();
     });
   }
 
@@ -63,6 +70,7 @@ import { books } from "./data/booksData.js";
     clearFilter.addEventListener("click", () => {
       clearFilters();
       displayBooks(books);
+      clearValidationErrors();
     });
   }
 })();

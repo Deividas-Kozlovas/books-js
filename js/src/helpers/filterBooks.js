@@ -10,25 +10,6 @@ export function getFilteredBooks() {
   const maxPagesInput = formData.get("bookPages");
   const maxPages = maxPagesInput ? parseInt(maxPagesInput, 10) : null;
 
-  const errorMessageContainer = document.querySelector("#filterError");
-
-  if (errorMessageContainer) {
-    errorMessageContainer.innerHTML = "";
-  }
-
-  const validationErrors = validateFilterInputs(
-    bookTitle,
-    bookCategory,
-    maxPages
-  );
-
-  if (validationErrors.length > 0) {
-    if (errorMessageContainer) {
-      errorMessageContainer.innerHTML = validationErrors.join("<br>");
-    }
-    return books;
-  }
-
   return filterBooks(books, bookTitle, bookCategory, maxPages);
 }
 
